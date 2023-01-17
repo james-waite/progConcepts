@@ -50,7 +50,7 @@ function draw() {
 
   // checks line position and inverts speed when it hits the top or bottom
   if (linePosY >= height || linePosY <= 0) {
-    lineSpeedY = lineSpeedY * -1;
+    lineSpeedY *= -1;
   }
   // console.log(linePosY);
 }
