@@ -1,2 +1,2 @@
-I just had a breakthrough will app01.js!
+I just had a breakthrough will app01.js! <br>
 The line was following the first three else if() statements, but would either stop or reverse when it got to the final side. I kept thinking there was something wrong with the last statement, but the fact that the line reversed made me think that it was picking back up on the first if() statement! Low and behold, I needed to change the first statement and it worked! Another reminder that just because you wrote code earlier and it hadn't been a problem, doesn't mean it won't eventually cause problems with things later, especially with added complexity :)
