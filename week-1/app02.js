@@ -1,7 +1,7 @@
 let p1, p2, p3, d1, d2;
 
 function setup() {
-  let myCanvas = createCanvas(255, 255);
+  let myCanvas = createCanvas(400, 400);
   myCanvas.parent('myContainer');
 
   p1 = 0;
@@ -29,6 +29,6 @@ function draw() {
 
   translate(width / 2, height / 2);
   strokeWeight(1);
-  stroke(sin(p2) + 155, p3 + 155, 155 - cos(p3));
+  stroke(p2 + 155, p3 + 155, 155 - p3);
   line(p1, p1, p2, p3);
 }
