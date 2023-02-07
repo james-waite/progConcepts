@@ -1,10 +1,10 @@
-let r,
-  g,
-  b,
-  branchLen = 0.5, // change this for # of branches & length, 0 --> 1
+let r = 120,
+  g = 140,
+  b = 60, // default colors to 'summer'
+  branchLen = 0.7, // change this for # of branches & length, 0 --> 1
   amountY = 0,
-  myCanvas;
-let imgArray = [];
+  myCanvas,
+  imgArray = [];
 
 function setup() {
   myCanvas = createCanvas(500, 500, WEBGL);
@@ -43,7 +43,6 @@ function branch(len) {
       pop();
     }
   } else {
-    (r = 80), (g = 120), (b = 40);
     fill(r, g, b, 200);
     noStroke();
 
@@ -69,6 +68,29 @@ function branch(len) {
 
 function rotateTree(dir) {
   true ? (amountY += 10) : (amountY -= 10);
+  console.log(dir);
+}
+
+function changeSeason(season) {
+  if (season.value === 'spring') {
+    r = random(180, 220);
+    g = random(200, 250);
+    b = random(60, 120);
+  } else if (season.value === 'summer') {
+    r = random(60, 120);
+    g = random(140, 200);
+    b = random(20, 60);
+  } else if (season.value === 'autumn') {
+    r = random(200, 250);
+    g = random(90, 140);
+    b = random(20, 60);
+  } else if (season.value === 'winter') {
+    r = random(160, 200);
+    g = random(200, 250);
+    b = random(200, 250);
+  } else {
+    (r = random(60, 120)), (g = random(90, 140)), (b = random(20, 60));
+  }
 }
 
 function saveImg() {

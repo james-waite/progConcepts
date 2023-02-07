@@ -28,6 +28,9 @@
         position: absolute;
         bottom: 0;
       }
+      /* #spring {
+        background: lightgreen;
+      } */
     </style>
   </head>
   <body>
@@ -36,6 +39,35 @@
         <button id="saveImg" onclick="saveImg()">SAVE</button>
         <button onclick="rotateTree(true)">&#8592;</button>
         <button onclick="rotateTree(false)">&#8594;</button>
+        <input
+          type="radio"
+          id="spring"
+          value="spring"
+          name="season"
+          checked
+          onclick="changeSeason(this)"
+        />
+        <input
+          type="radio"
+          id="summer"
+          value="summer"
+          name="season"
+          onclick="changeSeason(this)"
+        />
+        <input
+          type="radio"
+          id="autumn"
+          value="autumn"
+          name="season"
+          onclick="changeSeason(this)"
+        />
+        <input
+          type="radio"
+          id="winter"
+          value="winter"
+          name="season"
+          onclick="changeSeason(this)"
+        />
       </div>
       <div id="myContainer"></div>
       <!-- <div id="imgGallery"></div> -->
