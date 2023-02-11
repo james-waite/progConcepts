@@ -1,5 +1,5 @@
 let transAmount = 50;
-let vSlider, val, p1;
+let vSlider, p1, val;
 
 function setup() {
   myCanvas = createCanvas(500, 500);
@@ -11,7 +11,6 @@ function setup() {
 
 function draw() {
   background(150);
-  let val = vSlider.value();
   drawShape();
 
   // Tool to display cursor location, minus the amount translated
@@ -29,18 +28,28 @@ function draw() {
 function drawShape() {
   stroke('red');
 
-  let p1 = { x: val, y: -val };
+  val = vSlider.value();
+  let p1 = { x: val, y: val };
 
   push();
   translate(transAmount, transAmount);
 
   beginShape();
   vertex(-40, -40);
-  bezierVertex(40, -40, 70, -40, 80, -30, 80, 10);
+  bezierVertex(p1.x, -p1.y, 70, -p1.y, 80, -30);
   bezierVertex(80, 80, 80, 80, 80, 80);
   endShape(CLOSE);
 
   pop();
+
+  /*
+    vertex(x1, y1) 
+    bezierVertex(x2, y2, x3, y3, x4, y4);
+      1 - anchor point
+      2 - first control point
+      3 - second control point
+      4 - anchor point
+  */
 }
 
 // function drawShape() {
