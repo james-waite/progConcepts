@@ -101,4 +101,4 @@ function helperCoordinates() {
     x2, y2 -->  first control point
     x3, y3 --> second control point
     x4, y4 -->         anchor point
-  */
+*/
