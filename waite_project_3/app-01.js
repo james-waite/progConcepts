@@ -42,7 +42,7 @@ function drawShape() {
 
   pop();
 
-  /*
+  /* Syntax for bezier vertices
     vertex(x1, y1) 
     bezierVertex(x2, y2, x3, y3, x4, y4);
       1 - anchor point
