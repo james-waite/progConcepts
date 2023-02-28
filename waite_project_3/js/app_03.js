@@ -3,7 +3,7 @@ let data = {};
 let shapes = [];
 
 function preload() {
-  data = loadJSON('paths_01.json');
+  data = loadJSON('./json/paths_01.json');
 }
 
 // Convert saved Shape data into Shape Objects
@@ -27,11 +27,11 @@ function setup() {
 
 function draw() {
   background(150);
+  helperCoordinates();
   // loop through shapes[] and calls each display() method
   for (let i = 0; i < shapes.length; i++) {
     shapes[i].display();
   }
-  helperCoordinates();
 }
 
 class Shape {
@@ -55,8 +55,9 @@ class Shape {
       } else if (!arr[arr.length - 1]) {
         bezierVertex(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]);
       } else if (arr.length == 3) {
+        if (hasContour) endContour(CLOSE);
+        if (!hasContour) hasContour = true;
         beginContour();
-        hasContour = !hasContour;
         vertex(arr[0], arr[1]);
       } else {
         bezierVertex(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]);

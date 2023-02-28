@@ -4,7 +4,7 @@ let svg,
   transAmount = 0;
 
 function preload() {
-  svg = loadSVG('BAsset-1.svg');
+  svg = loadSVG('./assets/BAsset-1.svg');
   frameRate(20);
 }
 
