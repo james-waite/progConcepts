@@ -47,6 +47,7 @@ class Shape {
     // iterates through each nested array w/in this.data
     for (const path in this.data) {
       // console.log(`${this.data[path]}`);
+      // assigns current path object to an array
       const arr = this.data[path];
       // console.log(arr);
       if (!arr[arr.length - 1] && arr.length == 3) {
