@@ -20,7 +20,8 @@ function loadData() {
 }
 
 function setup() {
-  createCanvas(500, 500);
+  myCanvas = createCanvas(500, 500);
+  myCanvas.parent('myContainer');
   loadData();
 }
 
