@@ -3,21 +3,20 @@ let data = {};
 let shapes = [];
 
 function preload() {
-  data = loadJSON('paths.json');
+  data = loadJSON('paths_01.json');
 }
 
 // Convert saved Shape data into Shape Objects
 function loadData() {
-  let shapeData = data['shape_01']; // temporarily hard coded for just the first shape
-  console.log(shapeData); // log object to console
-  let shape = shapeData; // eventually will add shapeData[i]
-  let ver_00 = shape['ver_00'];
-  let bez_01 = shape['bez_01'];
-  let bez_02 = shape['bez_02'];
-  let con_03 = shape['con_03'];
-  let con_04 = shape['con_04'];
-  shapes.push(new Shape(ver_00, bez_01, bez_02, con_03, con_04)); // push shape to shapes array
-  console.log(shapes); // log shapes array to console
+  // for...in iterates over each object within the parent object
+  for (const shapeData in data) {
+    const pathData = { ...data[shapeData] }; // destructures each 'top-level' object in the json into it's own object
+    console.log(pathData); //log to show it's an object
+    const pathLength = Object.keys(pathData).length; // unused, but can determine how many arrays are in each shape
+    const arr = Object.values(pathData); // extract objects key's values into an array
+    console.log(arr); //log to show it's now an array
+    shapes.push(new Shape(arr));
+  }
 }
 
 function setup() {
@@ -27,57 +26,41 @@ function setup() {
 
 function draw() {
   background(150);
-
-  // Display  Shapes
+  // loop through shapes[] and calls each display() method
   for (let i = 0; i < shapes.length; i++) {
     shapes[i].display();
   }
-
   helperCoordinates();
 }
 
 class Shape {
-  constructor(ver_00, bez_01, bez_02, con_03, con_04) {
-    this.ver_00 = ver_00;
-    this.bez_01 = bez_01;
-    this.bez_02 = bez_02;
-    this.con_03 = con_03;
-    this.con_04 = con_04;
+  constructor(data) {
+    this.data = data;
   }
   display() {
-    // right now this is hard-coded, but eventually will add a loop to grab all beziers for each
+    // console.log(this.data);
+    let hasContour = false;
     push();
     stroke('red');
-    fill(255);
     beginShape();
-    vertex(this.ver_00.x1, this.ver_00.y1);
-    bezierVertex(
-      this.bez_01.x2,
-      this.bez_01.y2,
-      this.bez_01.x3,
-      this.bez_01.y3,
-      this.bez_01.x4,
-      this.bez_01.y4
-    );
-    bezierVertex(
-      this.bez_02.x2,
-      this.bez_02.y2,
-      this.bez_02.x3,
-      this.bez_02.y3,
-      this.bez_02.x4,
-      this.bez_02.y4
-    );
-    beginContour();
-    vertex(this.con_03.x1, this.con_03.y1);
-    bezierVertex(
-      this.con_04.x2,
-      this.con_04.y2,
-      this.con_04.x3,
-      this.con_04.y3,
-      this.con_04.x4,
-      this.con_04.y4
-    );
-    endContour(CLOSE);
+    // iterates through each nested array w/in this.data
+    for (const path in this.data) {
+      // console.log(`${this.data[path]}`);
+      const arr = this.data[path];
+      // console.log(arr);
+      if (!arr[arr.length - 1] && arr.length == 3) {
+        vertex(arr[0], arr[1]);
+      } else if (!arr[arr.length - 1]) {
+        bezierVertex(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]);
+      } else if (arr.length == 3) {
+        beginContour();
+        hasContour = !hasContour;
+        vertex(arr[0], arr[1]);
+      } else {
+        bezierVertex(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]);
+      }
+    }
+    if (hasContour) endContour(CLOSE);
     endShape(CLOSE);
     pop();
   }
@@ -96,11 +79,11 @@ function helperCoordinates() {
 }
 
 /*
-    bezier syntax:
-    vertex( x1, y1 );
-    bezierVertex( x2, y2, x3, y3, x4, y4 );
-    x1, y1 -->   first anchor point
-    x2, y2 -->  first control point
-    x3, y3 --> second control point
-    x4, y4 -->         anchor point
-*/
+  bezier syntax:
+  vertex( x1, y1 );
+  bezierVertex( x2, y2, x3, y3, x4, y4 );
+  x1, y1 -->   first anchor point
+  x2, y2 -->  first control point
+  x3, y3 --> second control point
+  x4, y4 -->         anchor point
+  */
