@@ -27,11 +27,11 @@ function setup() {
 
 function draw() {
   background(150);
-  helperCoordinates();
   // loop through shapes[] and calls each display() method
   for (let i = 0; i < shapes.length; i++) {
     shapes[i].display();
   }
+  helperCoordinates();
 }
 
 class Shape {
