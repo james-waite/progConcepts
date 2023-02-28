@@ -11,10 +11,10 @@ function loadData() {
   // for...in iterates over each object within the parent object
   for (const shapeData in data) {
     const pathData = { ...data[shapeData] }; // destructures each 'top-level' object in the json into it's own object
-    console.log(pathData); //log to show it's an object
+    // console.log(pathData); //log to show it's an object
     const pathLength = Object.keys(pathData).length; // unused, but can determine how many arrays are in each shape
     const arr = Object.values(pathData); // extract objects key's values into an array
-    console.log(arr); //log to show it's now an array
+    // console.log(arr); //log to show it's now an array
     shapes.push(new Shape(arr));
   }
 }
