@@ -18,7 +18,6 @@ function loadData() {
     shapes.push(new Shape(arr));
   }
 }
-7;
 
 function setup() {
   myCanvas = createCanvas(500, 500);
