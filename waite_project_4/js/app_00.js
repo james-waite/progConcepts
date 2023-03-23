@@ -1,5 +1,8 @@
+let x1, y1, x2, y2, x3, y3, x4, y4;
+let lerpVal = 0.0;
+let lerpAmount = 0.01;
 let shapeOne = [50, 50, 75, 55, 75, 45, 100, 50];
-let shapeTwo = [];
+let shapeTwo = [100, 50, 95, 75, 105, 75, 150, 50];
 
 function setup() {
   myCanvas = createCanvas(500, 500);
@@ -11,16 +14,42 @@ function draw() {
   noFill();
   strokeWeight(4);
   stroke('red');
+  x1 = lerp(shapeOne[0], shapeTwo[0], lerpVal);
+  y1 = lerp(shapeOne[1], shapeTwo[1], lerpVal);
+  x2 = lerp(shapeOne[2], shapeTwo[2], lerpVal);
+  y2 = lerp(shapeOne[3], shapeTwo[3], lerpVal);
+  x3 = lerp(shapeOne[4], shapeTwo[4], lerpVal);
+  y3 = lerp(shapeOne[5], shapeTwo[5], lerpVal);
+  x4 = lerp(shapeOne[6], shapeTwo[6], lerpVal);
+  y4 = lerp(shapeOne[7], shapeTwo[7], lerpVal);
+  if (lerpVal > 1 || lerpVal < 0) {
+    lerpAmount *= -1;
+  }
+  lerpVal += lerpAmount;
   drawShapes(shapeOne, shapeTwo);
 }
 
-function drawShapes(one, two) {
+function drawShapes(shapeOne, shapeTwo) {
+  /*
+  const a = 1;
+  global['point_' + a] = 'apple';
+  console.log(point_a) // "apple"
+  --or--
+  v['point_' + a] = 'apple';
+  console.log(v.point_1); // "apple"
+  console.log(v[point_1]); // "apple"
+  */
+
   push();
   beginShape();
-  vertex(one[0], one[1]);
-  bezierVertex(one[2], one[3], one[4], one[5], one[6], one[7]);
+  vertex(x1, y1);
+  bezierVertex(x2, y2, x3, y3, x4, y4);
   endShape();
   pop();
+}
+
+function lerpPoint(one, two) {
+  return lerp(one, two, larpVal);
 }
 
 /*
