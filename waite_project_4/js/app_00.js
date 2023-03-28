@@ -1,6 +1,7 @@
 let x1, y1, x2, y2, x3, y3, x4, y4;
 let lerpVal = 0.0;
 let lerpAmount = 0.01;
+let lerpArr = [];
 let shapeOne = [50, 50, 75, 55, 75, 45, 100, 50];
 let shapeTwo = [100, 50, 95, 75, 105, 75, 150, 50];
 
@@ -11,46 +12,30 @@ function setup() {
 
 function draw() {
   background(150);
+
+  for (let i = 0; i < shapeOne.length; i++) {
+    lerpArr[i] = lerp(shapeOne[i], shapeTwo[i], lerpVal);
+  }
+  lerpVal > 1 || lerpVal < 0 ? (lerpAmount *= -1) : null;
+  lerpVal += sin(lerpAmount) * 0.8;
+  drawShapes(lerpArr);
+}
+
+function drawShapes(arr) {
+  push();
+  beginShape();
   noFill();
   strokeWeight(4);
   stroke('red');
-  x1 = lerp(shapeOne[0], shapeTwo[0], lerpVal);
-  y1 = lerp(shapeOne[1], shapeTwo[1], lerpVal);
-  x2 = lerp(shapeOne[2], shapeTwo[2], lerpVal);
-  y2 = lerp(shapeOne[3], shapeTwo[3], lerpVal);
-  x3 = lerp(shapeOne[4], shapeTwo[4], lerpVal);
-  y3 = lerp(shapeOne[5], shapeTwo[5], lerpVal);
-  x4 = lerp(shapeOne[6], shapeTwo[6], lerpVal);
-  y4 = lerp(shapeOne[7], shapeTwo[7], lerpVal);
-  if (lerpVal > 1 || lerpVal < 0) {
-    lerpAmount *= -1;
-  }
-  lerpVal += lerpAmount;
-  drawShapes(shapeOne, shapeTwo);
-}
-
-function drawShapes(shapeOne, shapeTwo) {
-  /*
-  const a = 1;
-  global['point_' + a] = 'apple';
-  console.log(point_a) // "apple"
-  --or--
-  v['point_' + a] = 'apple';
-  console.log(v.point_1); // "apple"
-  console.log(v[point_1]); // "apple"
-  */
-
-  push();
-  beginShape();
-  vertex(x1, y1);
-  bezierVertex(x2, y2, x3, y3, x4, y4);
+  vertex(arr[0], arr[1]);
+  bezierVertex(arr[2], arr[3], arr[4], arr[5], arr[6], arr[7]);
   endShape();
   pop();
 }
 
-function lerpPoint(one, two) {
-  return lerp(one, two, larpVal);
-}
+// function lerpPoint(one, two, t) {
+//   return lerp(one, two, t);
+// }
 
 /*
 function setup() {
