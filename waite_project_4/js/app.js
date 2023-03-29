@@ -1,6 +1,11 @@
 let transAmount = 0;
 let data = {};
 let shapes = [];
+let shape = [
+  [50, 50, 75, 55, 75, 45, 100, 50],
+  [100, 50, 95, 75, 105, 75, 150, 50],
+  [75, 75, 50, 75, 85, 25, 125, 50],
+];
 
 function preload() {
   data = loadJSON("./json/paths_02.json");
@@ -31,6 +36,7 @@ function draw() {
   for (let i = 0; i < shapes.length; i++) {
     shapes[i].display();
   }
+  animController();
   helperCoordinates();
 }
 
