@@ -1,3 +1,6 @@
+/*
+  takes two arrays and the t value between lerped points, clears the lerpArr and populates it with new lerp positions
+*/
 function lerpPoints(one, two, t) {
   lerpArr = [];
   for (let i = 0; i < one.length; i++) {

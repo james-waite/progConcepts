@@ -10,7 +10,7 @@ function preload() {
   data = loadJSON("./json/paths_02.json");
 }
 
-// Convert saved Shape data into Shape Objects
+// Convert saved Shape data into Shape Objects... same code as last project, except now it pushes the extracted arrays into shapes[] rather than making them instances of the Shape Class
 function loadData() {
   // for...in iterates over each object within the parent object
   for (const shapeData in data) {
@@ -35,6 +35,7 @@ function draw() {
   helperCoordinates();
 }
 
+// primary 'logic' of the program, controls the state of the animation, increments the lerpVal, and calls the lerpPoint() and drawShapes() functions
 function animController() {
   // when lerpVal goes from 0 --> 1, increment to next shape state and reset lerpVal to 0
   if (lerpVal >= 1) {
@@ -52,60 +53,3 @@ function animController() {
   // lerpVal > 1 || lerpVal < 0 ? (lerpAmount *= -1) : null; // oscillate between 0 and 1, used for preliminary testing
   lerpVal += lerpAmount;
 }
-
-/*
-  "2": [
-    [0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, 0, 0, 0, 0, false],
-    [0, 0, true],
-    [0, 0, 0, 0, 0, 0, true],
-    [0, 0, 0, 0, 0, 0, true],
-    [0, 0, 0, 0, 0, 0, true],
-    [0, 0, 0, 0, 0, 0, true],
-    [0, 0, true],
-    [0, 0, 0, 0, 0, 0, true],
-    [0, 0, 0, 0, 0, 0, true],
-    [0, 0, 0, 0, 0, 0, true],
-    [0, 0, 0, 0, 0, 0, true],
-    [0, 0, 0, 0, 0, 0, true],
-    [0, 0, 0, 0, 0, 0, true],
-    [0, 0, true],
-    [0, 0, 0, 0, 0, 0, true],
-    [0, 0, 0, 0, 0, 0, true],
-    [0, 0, 0, 0, 0, 0, true],
-    [0, 0, 0, 0, 0, 0, true],
-    [0, 0, 0, 0, 0, 0, true],
-    [0, 0, 0, 0, 0, 0, true],
-    [0, 0, 0, 0, 0, 0, true],
-    [0, 0, 0, 0, 0, 0, true]
-  ]
-  */

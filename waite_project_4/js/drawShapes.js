@@ -1,3 +1,6 @@
+/*
+  This is the same code from the prior project, just taken out of the Shape class and into its own function.
+*/
 function drawShapes(lerpArr) {
   let hasContour = false;
   push();
