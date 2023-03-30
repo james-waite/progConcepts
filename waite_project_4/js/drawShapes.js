@@ -1,0 +1,25 @@
+function drawShapes(lerpArr) {
+  let hasContour = false;
+  push();
+  stroke("red");
+  beginShape();
+  for (const path in lerpArr) {
+    const arr = lerpArr[path];
+
+    if (!arr[arr.length - 1] && arr.length == 3) {
+      vertex(arr[0], arr[1]);
+    } else if (!arr[arr.length - 1]) {
+      bezierVertex(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]);
+    } else if (arr.length == 3) {
+      if (hasContour) endContour(CLOSE);
+      if (!hasContour) hasContour = true;
+      beginContour();
+      vertex(arr[0], arr[1]);
+    } else {
+      bezierVertex(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]);
+    }
+  }
+  if (hasContour) endContour(CLOSE);
+  endShape(CLOSE);
+  pop();
+}

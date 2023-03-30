@@ -1,5 +1,10 @@
 let data = {};
 let shapes = [];
+let lerpArr = [];
+let lerpVal = 0.0;
+let lerpAmount = 0.01;
+let beginState = 0;
+let endState = 1;
 
 function preload() {
   data = loadJSON("./json/paths_02.json");
@@ -14,9 +19,7 @@ function loadData() {
     const pathLength = Object.keys(pathData).length; // unused, but can determine how many arrays are in each shape
     const arr = Object.values(pathData); // extract objects' key values into an array
     // console.log(arr); //log to show it's now an array
-    // shapes.push(new Shape(arr));
     shapes.push(arr);
-    // console.log(shapes);
   }
 }
 
@@ -28,94 +31,28 @@ function setup() {
 
 function draw() {
   background(150);
-  // loop through shapes[] and calls each display() method
-  // for (let i = 0; i < shapes.length; i++) {
-  //   shapes[i].display();
-  // }
   animController();
   helperCoordinates();
 }
 
-function drawShapes(lerpArr) {
-  let hasContour = false;
-  push();
-  stroke("red");
-  beginShape();
-  for (const path in lerpArr) {
-    const arr = lerpArr[path];
-
-    if (!arr[arr.length - 1] && arr.length == 3) {
-      vertex(arr[0], arr[1]);
-    } else if (!arr[arr.length - 1]) {
-      bezierVertex(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]);
-    } else if (arr.length == 3) {
-      if (hasContour) endContour(CLOSE);
-      if (!hasContour) hasContour = true;
-      beginContour();
-      vertex(arr[0], arr[1]);
-    } else {
-      bezierVertex(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]);
-    }
+function animController() {
+  // when lerpVal goes from 0 --> 1, increment to next shape state and reset lerpVal to 0
+  if (lerpVal >= 1) {
+    beginState++;
+    endState++;
+    lerpVal = 0;
   }
-  if (hasContour) endContour(CLOSE);
-  endShape(CLOSE);
-  pop();
+  // when either end or beginning states are longer than number of shapes, reset back to 0
+  endState >= shapes.length ? (endState = 0) : null;
+  beginState >= shapes.length ? (beginState = 0) : null;
+  // call lerpPoint function, passing current lerpVal and current shape states
+  lerpPoints(shapes[beginState], shapes[endState], lerpVal);
+  // console.log(lerpArr);
+  drawShapes(lerpArr); // draws current shape in lerpArr, created with lerpPoint()
+  // lerpVal > 1 || lerpVal < 0 ? (lerpAmount *= -1) : null; // oscillate between 0 and 1, used for preliminary testing
+  lerpVal += lerpAmount;
 }
 
-// class Shape {
-//   constructor(data) {
-//     this.data = data;
-//   }
-//   display() {
-//     // console.log(this.data);
-//     let hasContour = false;
-//     push();
-//     stroke("red");
-//     beginShape();
-//     // iterates through each nested array w/in this.data
-//     for (const path in this.data) {
-//       // console.log(`${this.data[path]}`);
-//       // assigns current path object to an array
-//       const arr = this.data[path];
-//       // console.log(arr);
-//       if (!arr[arr.length - 1] && arr.length == 3) {
-//         vertex(arr[0], arr[1]);
-//       } else if (!arr[arr.length - 1]) {
-//         bezierVertex(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]);
-//       } else if (arr.length == 3) {
-//         if (hasContour) endContour(CLOSE);
-//         if (!hasContour) hasContour = true;
-//         beginContour();
-//         vertex(arr[0], arr[1]);
-//       } else {
-//         bezierVertex(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]);
-//       }
-//     }
-//     if (hasContour) endContour(CLOSE);
-//     endShape(CLOSE);
-//     pop();
-//   }
-// }
-
-function helperCoordinates() {
-  push();
-  translate(-50, 0);
-  stroke(255);
-  strokeWeight(4);
-  textSize(24);
-  text("(" + floor(mouseX) + ", " + floor(mouseY) + ")", mouseX, mouseY);
-  pop();
-}
-
-/*
-  bezier syntax:
-  vertex( x1, y1 );
-  bezierVertex( x2, y2, x3, y3, x4, y4 );
-  x1, y1 -->   first anchor point
-  x2, y2 -->  first control point
-  x3, y3 --> second control point
-  x4, y4 -->         anchor point
-  */
 /*
   "2": [
     [0, 0, false],
