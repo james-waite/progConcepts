@@ -7,7 +7,7 @@ let beginState = 0;
 let endState = 1;
 
 function preload() {
-  data = loadJSON("./json/paths_02.json");
+  data = loadJSON('./json/paths_02.json');
 }
 
 // Convert saved Shape data into Shape Objects... same code as last project, except now it pushes the extracted arrays into shapes[] rather than making them instances of the Shape Class
@@ -25,7 +25,7 @@ function loadData() {
 
 function setup() {
   myCanvas = createCanvas(1000, 1000);
-  myCanvas.parent("myContainer");
+  myCanvas.parent('myContainer');
   loadData();
 }
 

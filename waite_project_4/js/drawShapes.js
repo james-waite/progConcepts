@@ -4,7 +4,7 @@
 function drawShapes(lerpArr) {
   let hasContour = false;
   push();
-  stroke("red");
+  stroke('red');
   beginShape();
   for (const path in lerpArr) {
     const arr = lerpArr[path];
