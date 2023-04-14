@@ -5,7 +5,8 @@ function drawShapes(lerpArr) {
   let hasContour = false;
   push();
   stroke('red');
-  fill(50);
+  strokeWeight(4);
+  fill(250);
   scale(0.8); //temporary scaling to fit the window
   beginShape();
   for (const path in lerpArr) {
