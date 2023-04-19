@@ -7,7 +7,7 @@ let beginState = 0;
 let endState = 1;
 
 function preload() {
-  data = loadJSON('./json/paths_02.json');
+  data = loadJSON("./json/paths_02.json");
 }
 
 // Convert saved Shape data into Shape Objects... same code as last project, except now it pushes the extracted arrays into shapes[] rather than making them instances of the Shape Class
@@ -25,14 +25,14 @@ function loadData() {
 
 function setup() {
   myCanvas = createCanvas(windowWidth, windowHeight);
-  myCanvas.parent('myContainer');
+  myCanvas.parent("myContainer");
   loadData();
 }
 
 function draw() {
   background(25);
   animController();
-  helperCoordinates();
+  // helperCoordinates();
 }
 
 function windowResized() {
@@ -57,4 +57,11 @@ function animController() {
   // oscillate between 0 and 1, used for preliminary testing
   // lerpVal > 1 || lerpVal < 0 ? (lerpAmount *= -1) : null;
   lerpVal += lerpAmount;
+  // lerpVal += easeInOutQuad(lerpAmount);
+  // lerpVal += 2 * lerpAmount * lerpAmount;
+  // console.log(lerpVal);
+}
+
+function easeInOutQuad(t) {
+  return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 }
