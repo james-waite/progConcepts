@@ -2,6 +2,7 @@ let data = {};
 let shapes = [];
 let lerpArr = [];
 let sg;
+let paused = false;
 let lerpVal = 0;
 let counter = 0;
 let lerpAmount = 0.01;
@@ -34,9 +35,18 @@ function setup() {
 }
 
 function draw() {
+  if (paused) return;
   background(25);
   animController();
   // helperCoordinates();
+}
+
+function mousePressed() {
+  paused = !paused;
+}
+
+function mouseReleased() {
+  paused = !paused;
 }
 
 function windowResized() {

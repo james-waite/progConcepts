@@ -18,6 +18,6 @@ function animController() {
   // lerpVal = linearTween(counter, lerpVal, lerpAmount, 1000);
   // lerpVal = easeInOutQuad(frameCount, lerpVal, lerpAmount, 2000);
   lerpVal += easyEase(counter, deltaTime, lerpAmount, 4000);
-  console.log(lerpVal);
+  //   console.log(lerpVal);
   counter++;
 }
