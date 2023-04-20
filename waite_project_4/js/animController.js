@@ -1,7 +1,7 @@
 // primary 'logic' of the program, controls the state of the animation, increments the lerpVal, and calls the lerpPoint() and drawShapes() functions
 function animController() {
   // when lerpVal goes from 0 --> 1, increment to next shape state and reset lerpVal to 0
-  if (lerpVal >= 1) {
+  if (lerpVal > 1) {
     beginState++;
     endState++;
     lerpVal = 0;
@@ -14,10 +14,30 @@ function animController() {
   lerpPoints(shapes[beginState], shapes[endState], lerpVal);
   // draws current shape in lerpArr, created with lerpPoint()
   drawShapes(lerpArr);
+
+  // radio logic handled with switch to control different easing functions
+  switch (radio.value()) {
+    case "1":
+      lerpVal += lerpAmount;
+      break;
+    case "2":
+      lerpVal = easeInQuad(counter, lerpVal, lerpAmount, 2000);
+      break;
+    case "3":
+      lerpVal = easeOutQuad(counter, lerpVal, lerpAmount, 2000);
+      break;
+    case "4":
+      lerpVal = easeInOutQuad(frameCount, lerpVal, lerpAmount, 2000);
+      break;
+    case "5":
+      lerpVal += easyEase(counter, deltaTime, lerpAmount, 4000);
+      break;
+  }
+
   // lerpVal += lerpAmount;
   // lerpVal = linearTween(counter, lerpVal, lerpAmount, 1000);
   // lerpVal = easeInOutQuad(frameCount, lerpVal, lerpAmount, 2000);
-  lerpVal += easyEase(counter, deltaTime, lerpAmount, 4000);
-  //   console.log(lerpVal);
+  // lerpVal += easyEase(counter, deltaTime, lerpAmount, 4000);
+  // console.log(lerpVal);
   counter++;
 }

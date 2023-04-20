@@ -9,4 +9,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
+}
+#myContainer,
+.radio,
+input {
+  cursor: pointer;
+  font-size: 22px;
 }

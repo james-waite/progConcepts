@@ -2,6 +2,7 @@ let data = {};
 let shapes = [];
 let lerpArr = [];
 let sg;
+let radio;
 let paused = false;
 let lerpVal = 0;
 let counter = 0;
@@ -32,6 +33,16 @@ function setup() {
   myCanvas.parent("myContainer");
   loadData();
   sg = createGraphics(1000, 1000);
+
+  radio = createRadio().parent("myContainer").position(50, 25).class("radio");
+  // .option([contentValue],[value]) --> if one param, is both content and value, treated as string
+  radio.option(1, "linearTween");
+  radio.option(2, "easeInQuad");
+  radio.option(3, "easeOutQuad");
+  radio.option(4, "easeInOutQuad");
+  radio.option(5, "easyEase");
+  // set init value of radio
+  radio.value("1");
 }
 
 function draw() {

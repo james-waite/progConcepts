@@ -1,8 +1,8 @@
 // some failed attempts at figuring out easing...
-function linearTween(t, b, c, d) {
-  console.log((c * t) / d + b);
-  return (c * t) / d + b;
-}
+// function linearTween(t, b, c, d) {
+//   console.log((c * t) / d + b);
+//   return (c * t) / d + b;
+// }
 
 function easeInQuad(t, b, c, d) {
   t /= d;
@@ -12,6 +12,7 @@ function easeInQuad(t, b, c, d) {
 
 function easeOutQuad(t, b, c, d) {
   t /= d;
+  console.log(-c * t * (t - 2) + b);
   return -c * t * (t - 2) + b;
 }
 
@@ -29,6 +30,7 @@ function easeInOutQuad(t, b, c, d) {
 
 function easyEase(count, delTime, lerpAm, dur) {
   count /= dur - delTime;
+  console.log((lerpVal += lerpAm * count));
   return lerpAm * count;
 }
 
