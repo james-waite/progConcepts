@@ -41,7 +41,7 @@ class Shape {
     strokeWeight(4);
     noFill();
     // fill(150);
-    scale(0.5); //temporary scaling to fit the window
+    scale(0.6); //temporary scaling to fit the window
     beginShape();
     for (const path in this.lerpArr) {
       const arr = this.lerpArr[path];

@@ -15,7 +15,7 @@ function loadData() {
     const pathLength = Object.keys(pathData).length; // unused, but can determine how many arrays are in each shape
     const arr = Object.values(pathData); // extract objects' key values into an array
     // console.log(arr); //log to show it's now an array
-    let xOff = shapes.length * 350;
+    let xOff = shapes.length * 450;
     shapes.push(new Shape(arr, xOff, random(0.005, 0.01)));
     console.log(shapes);
   }
