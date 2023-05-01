@@ -1,7 +1,6 @@
 let data = {};
 let shapes = [];
 let lerpArr = [];
-let sg;
 let radio;
 let paused = false;
 let lerpVal = 0;
@@ -37,9 +36,9 @@ function setup() {
   radio = createRadio().parent('myContainer').position(50, 25).class('radio');
   // .option([contentValue],[value]) --> if one param, is both content and value, treated as string
   radio.option(1, 'linearTween');
-  radio.option(2, 'easeInQuad');
-  radio.option(3, 'easeOutQuad');
-  radio.option(4, 'easeInOutQuad');
+  // radio.option(2, 'easeInQuad');
+  // radio.option(3, 'easeOutQuad');
+  // radio.option(4, 'easeInOutQuad');
   radio.option(5, 'easyEase');
   // set init value of radio
   radio.value('1');
