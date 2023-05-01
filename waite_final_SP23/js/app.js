@@ -3,7 +3,7 @@ let shapes = [];
 let paused = false;
 
 function preload() {
-  data = loadJSON('./json/paths.json');
+  data = loadJSON("./json/paths.json");
 }
 
 // Convert saved Shape data into Shape Objects... same code as last project, except now it pushes the extracted arrays into shapes[] rather than making them instances of the Shape Class
@@ -23,7 +23,7 @@ function loadData() {
 
 function setup() {
   myCanvas = createCanvas(windowWidth, windowHeight);
-  myCanvas.parent('myContainer');
+  myCanvas.parent("myContainer");
   loadData();
   background(0);
 }
@@ -31,7 +31,6 @@ function setup() {
 function draw() {
   if (paused) return;
   background(0, 4);
-  // animController();
   for (let i = 0; i < shapes.length; i++) {
     shapes[i].animController();
   }
