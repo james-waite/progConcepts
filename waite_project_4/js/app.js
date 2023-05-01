@@ -47,7 +47,7 @@ function setup() {
 
 function draw() {
   if (paused) return;
-  background(0, 0, 0, 4);
+  background(0, 4);
   animController();
   // helperCoordinates();
 }
