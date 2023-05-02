@@ -34,6 +34,7 @@ function draw() {
   for (let i = 0; i < shapes.length; i++) {
     shapes[i].animController();
   }
+  // shapes[1].animController();
 }
 
 function mousePressed() {

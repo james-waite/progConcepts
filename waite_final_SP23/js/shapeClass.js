@@ -37,11 +37,11 @@ class Shape {
     let hasContour = false;
     push();
     translate(this.xOff, 100); // offsets each by *# of shapes
-    stroke('red');
+    stroke("red");
     strokeWeight(4);
     noFill();
     // fill(150);
-    scale(0.6); //temporary scaling to fit the window
+    scale(0.5); //temporary scaling to fit the window
     beginShape();
     for (const path in this.lerpArr) {
       const arr = this.lerpArr[path];
