@@ -3,7 +3,7 @@ let shapes = [];
 let paused = false;
 
 function preload() {
-  data = loadJSON("./json/paths.json");
+  data = loadJSON('./json/paths.json');
 }
 
 // Convert saved Shape data into Shape Objects... same code as last project, except now it pushes the extracted arrays into shapes[] rather than making them instances of the Shape Class
@@ -15,7 +15,7 @@ function loadData() {
     const pathLength = Object.keys(pathData).length; // unused, but can determine how many arrays are in each shape
     const arr = Object.values(pathData); // extract objects' key values into an array
     // console.log(arr); //log to show it's now an array
-    let xOff = shapes.length * 450;
+    let xOff = shapes.length * 500;
     shapes.push(new Shape(arr, xOff, random(0.005, 0.01)));
     console.log(shapes);
   }
@@ -23,7 +23,7 @@ function loadData() {
 
 function setup() {
   myCanvas = createCanvas(windowWidth, windowHeight);
-  myCanvas.parent("myContainer");
+  myCanvas.parent('myContainer');
   loadData();
   background(0);
 }
